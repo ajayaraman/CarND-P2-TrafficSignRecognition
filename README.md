@@ -1,4 +1,4 @@
-#**Traffic Sign Recognition** 
+# **Traffic Sign Recognition** 
 
 ---
 
@@ -13,18 +13,18 @@ The goals / steps of this project are the following:
 * Summarize the results with a written report
 
 ## Rubric Points
-###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
+### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
 
 ---
-###Writeup / README
+### Writeup / README
 
-####1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
+#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
 
-You're reading it! and here is a link to my [project code](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
+You're reading it! and here is a link to my [project code](https://github.com/ajayaraman/CarND-P2-TrafficSignRecognition/blob/master/Traffic_Sign_Classifier.ipynb)
 
-###Data Set Summary & Exploration
+### Data Set Summary & Exploration
 
-####1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
+#### 1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
 
 I used the pandas library to calculate summary statistics of the traffic
 signs data set:
@@ -35,15 +35,15 @@ signs data set:
 * The shape of a traffic sign image is (32, 32, 3)
 * The number of unique classes/labels in the data set is 43
 
-####2. Include an exploratory visualization of the dataset.
+#### 2. Include an exploratory visualization of the dataset.
 
 Here is an exploratory visualization of the data set. It is a bar chart showing how the data is distributed among the classes for the training dataset. The visualization was done with numpy and matplotlib.pyplot.
 
 ![data distribution](images/datadistrib_train.png)
 
-###Design and Test a Model Architecture
+### Design and Test a Model Architecture
 
-####1. Data augmentation and preprocessing
+#### 1. Data augmentation and preprocessing
 
 I decided to use color images as the input instead of grayscale versions as I feel that color will play a significant role in the recognition and distinction of road signs. In addition to the original data, I've augmented the dataset using the following techniques, rotation, random cropping and resizing. Here's a figure depicting the various data augmentations to increase the size of the training dataset
 
@@ -52,7 +52,7 @@ I decided to use color images as the input instead of grayscale versions as I fe
 As a last step, I normalized the image data because normalized inputs tend to produce better convergence and lead to faster learning during the gradient descent update step.
 
 
-####2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
+#### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
 My final model consisted of the following layers:
 
@@ -78,11 +78,11 @@ My final model consisted of the following layers:
  
 
 
-####3. Training the model
+#### 3. Training the model
 
 To train the model, I used an Adam Optimizer with a learning rate of 0.003 and a mini batch size of 128. These hyperparameters were adjusted based on emperically checking the performance and speed of learning. The network was trained for a total of 15 epochs. After 8 epochs the improvements in the validation were very minor and very likely the training could have been stopped at 10 epochs.
 
-####4. Approach taken to fine tune the network and improve the validation set accuracy
+#### 4. Approach taken to fine tune the network and improve the validation set accuracy
 
 My final model results were:
 * validation set accuracy of 89.7 %
@@ -97,9 +97,9 @@ An iterative approach was chosen:
 * I would also try transfer learning approach with alexnet and vgg16 to see if the results improve.
  
 
-###Test a Model on New Images
+### Test a Model on New Images
 
-####1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
+#### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
 
 Here are five German traffic signs that I found on the web:
 
@@ -108,9 +108,9 @@ Here are five German traffic signs that I found on the web:
 
 The last image, speed 30 kph, is likely to present a challenge to the network as it is too small when resized to a 32x32x3 image and the background gets more real estate in the image.
 
-####2. Here's a  snapshot of the predictions of the network
+#### 2. Here's a  snapshot of the predictions of the network
 
-![new image predictions](test_images/predictionsnewimages.png)
+![new image predictions](images/predictionsnewimages.png)
 
 | Ground Truth         	|     Prediction	        					| Softmax Probabilities|
 |:---------------------:|:---------------------------------------------:|:--------------------:|
@@ -121,5 +121,5 @@ The last image, speed 30 kph, is likely to present a challenge to the network as
 | Speed limit (60km/h)  | Yield     							        | 0.99
 
 The model was able to correctly guess 5 of the 8 traffic signs, which gives an accuracy of 62.5%. For the first few images,the final model is very certain about the predictions. The last 3 images pose a challenge to the network.
-The accuracy of the test set is around 90%. So the network is still likely to make mistakes in its present form. The images that the network erroed on are all ones where the traffic sign is too small compared to the background. If we leave these images out, then the accuracy is 100% which means that the network performs well on the type of images that occur in the training dataset. In order for the network to work on images of smaller traffic signs we will need to add additional images to the training dataset of this kind. The speed signs may also pose a problem because there is just one character that distinguishes each speed limit sign from the other. The other approach to improve resuls with speed signs would be to combine all speed limit signs into one category and then apply additional techniques to parse out the result. 
+The accuracy of the original provided test set is around 90%. So the network is still likely to make mistakes in its present form. The images that the network erroed on are all ones where the traffic sign is too small compared to the background. If we leave these images out, then the accuracy is 100% which means that the network performs well on the type of images that occur in the training dataset. In order for the network to work on images of smaller traffic signs we will need to add additional images to the training dataset of this kind. The speed signs may also pose a problem because there is just one character that distinguishes each speed limit sign from the other. The other approach to improve resuls with speed signs would be to combine all speed limit signs into one category and then apply additional techniques to parse out the result. 
 
